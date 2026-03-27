@@ -1,0 +1,13 @@
+app:
+  env: dev
+
+log:
+  level: debug
+  stdout: true
+  fileout: true
+
+redis:
+  enabled: true
+
+mongodb:
+  enabled: true

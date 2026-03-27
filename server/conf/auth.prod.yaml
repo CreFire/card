@@ -1,0 +1,14 @@
+app:
+  env: prod
+
+log:
+  level: info
+  retention_days: 30
+  stdout: false
+  fileout: true
+
+redis:
+  enabled: true
+
+mongodb:
+  enabled: true

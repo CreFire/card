@@ -1,0 +1,50 @@
+app:
+  env: dev
+
+server:
+  name: logic
+  host: 0.0.0.0
+  port: 9005
+
+etcd:
+  endpoints:
+    - 127.0.0.1:2379
+  dial_timeout_sec: 5
+  lease_ttl_sec: 10
+  service_prefix: /wuziqi/services
+  advertise_host: 127.0.0.1
+  advertise_port: 9005
+  enable_discovery: true
+
+redis:
+  enabled: true
+  addresses:
+    - 127.0.0.1:6379
+  username: ""
+  password: ""
+  db: 0
+  dial_timeout_sec: 5
+  read_timeout_sec: 3
+  write_timeout_sec: 3
+  pool_size: 10
+  min_idle_conns: 2
+
+mongodb:
+  enabled: true
+  uri: mongodb://127.0.0.1:27017
+  database: wuziqi_logic
+  connect_timeout_sec: 5
+  server_selection_timeout_sec: 5
+  max_pool_size: 20
+  min_pool_size: 2
+
+log:
+  level: debug
+  path: logs/logic.log
+  rotation: daily
+  max_file_size_mb: 10
+  retention_days: 7
+  stdout: true
+  fileout: true
+  sync: false
+  skip: 2

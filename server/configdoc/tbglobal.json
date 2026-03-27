@@ -1,0 +1,10 @@
+[
+  {
+    "server_name": "wuziqi-dev",
+    "max_room_player": 2,
+    "match_timeout_sec": 30,
+    "turn_timeout_sec": 20,
+    "board_size": 15,
+    "allow_undo": true
+  }
+]

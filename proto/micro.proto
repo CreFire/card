@@ -1,0 +1,44 @@
+
+syntax = "proto3";
+
+package pb;
+
+option csharp_namespace = "Fusaner.Net.Pb";
+option go_package = "game/src/proto/pb";
+
+
+enum Act{
+    ACT_NONE = 0;
+//-------------------------------------------认证服消息开始----------------------------------------------------
+    AUTH_PING     = 1; // ping消息
+    AUTH_USE_ROLE = 2; // 使用角色
+    AUTH_NOTICE   = 3; // 登录页公告
+    AUTH_CHECK    = 4; // 检查是否允许进入区服
+    AUTH_LOGIN    = 5; // 登录认证
+  // ----------登录----------------
+    LOGIN_BY_SESSION = 7; // 通过session登录
+    LOGIN_SYNC = 8; // 同步登录状态
+// -------------------------------------------认证服消息结束----------------------------------------------------
+
+}
+
+enum Cmd {
+    CMD_NONE =0;
+    LOGIN = 1; // 登录
+    AUTH = 2; // 验证
+    MAIN = 3; // 主界面
+    NOTIFY = 4; // 通知
+    MATCH = 5; // 匹配
+    ROOM = 6; // 房间
+}
+
+// 玩家状态
+enum GamerStatus {
+  OFFLINE  = 0; // 离线
+  ONLINE   = 1; // 在线
+  OMATCH    = 2; // 匹配中
+  INCOMING = 3; // 加入
+  FIGHTING = 4; // 比赛中
+  EXITING  = 5; // 退出
+  INTERACT = 6; // 互动
+}

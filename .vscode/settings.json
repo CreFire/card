@@ -1,0 +1,22 @@
+{
+    "cSpell.unknownWords": "report-flagged",
+    "cSpell.enabled": false,
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.profiles.windows": {
+        "Git Bash": {
+            "path": "D:/Work/Ide/Git/bin/bash.exe"
+        }
+    },
+    "cSpell.words": [
+        "docpb",
+        "extendee",
+        "Idxs",
+        "luban",
+        "protoc",
+        "protogen",
+        "protoimpl",
+        "protoreflect",
+        "Tbglobal",
+        "wuziqi"
+    ]
+}

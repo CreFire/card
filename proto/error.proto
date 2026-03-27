@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package pb;
+
+option csharp_namespace = "Game.Net.Pb";
+option go_package = "game/src/proto/pb";
+
+enum ERROR {
+  //--------------------------------------通用错误码开始(0-999)--------------------------------------
+
+  SUCCESS                     = 0; // 成功
+  FAILED                      = 1; // 失败
+  UNEXPECTED                  = 2; // 意外错误
+  PB_PACK                     = 3; // pb打包错误
+  PB_UNPACK                   = 4; // pb解包错误
+  DATA_TOO_SHORT              = 5; // 数据太短
+  DATA_TOO_LONG               = 6; // 数据太长
+  DATA_DECRYPT                = 7; // 数据解密错误
+  HTTP_TOO_FAST               = 8; // http 请求频繁
+  REQUEST_PARAMS              = 9; // 请求参数错误
+  TCP_C2S_TOO_FAST            = 10; // 消息请求太频繁(操作频繁,或者脚本请求太频繁)
+  VERSION_TOO_LOW             = 11; // 版本太低
+  VERSION_NOT_FOUND           = 12; // 没有找到资源版本信息
+  UNMARSHAL_JSON_FAILED       = 13; // 解析json 失败
+  UNMARSHAL_OCTET_FAILED      = 14; // 解析二进制失败
+  UNSUPPORT_HTTP_METHOD       = 15; // 不支持的http方法
+  UNSUPPORT_HTTP_CONTENT_TYPE = 16; // 不支持的http BODY
+  RPC_SERVER_RSP_ERROR        = 17; // rpc服务返回错误
+  //--------------------------------------通用错误码结束(0-999)--------------------------------------
+}
+
+message HttpError {
+  int32               err_code  = 1; // 错误码
+  string              err_desc  = 2; // 错误描述
+  map<string, string> meta_data = 3; // 元数据
+}
+
+message RpcError {
+  ERROR  err_code = 1; // 错误码
+  string err_desc = 2; // 错误描述
+}

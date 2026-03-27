@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package pb;
+
+option csharp_namespace = "Game.Net.Pb";
+option go_package = "game/src/proto/pb";
+
+message Gamer {
+  int64  id                 = 1; //@inject_tag: bson:"_id" //4玩家id（Mongo里一般ID字段都叫"_id"）
+  string account            = 2; //@inject_tag: bson:"account" // 账号
+  string session            = 4; //@inject_tag: bson:"session" // 快速重连session
+  uint64 flags              = 7; //@inject_tag: bson:"flags" // 标志位
+  int32  ls_id              = 8; //@inject_tag: bson:"lSId" // 物理区服（lSId =LogicServer Id？）
+  int32  ps_id              = 9; //@inject_tag: bson:"pSId" // 逻辑区服
+  int64  register_time      = 10; //@inject_tag: bson:"reg_t" // 注册时间
+  int64  login_time         = 11; //@inject_tag: bson:"lg_t" // 上次登陆时间
+  int64  offline_time       = 12; //@inject_tag: bson:"of_t" // 上次离线时间
+  int64  last_pass_day_time = 13; //@inject_tag: bson:"pd_t" // 上次跨天时间
+  int32  last_conf_version  = 14; //@inject_tag: bson:"lcv" // 上次在线配置版本号
+}
+
+message DeviceInfo {
+  int64  gid              = 1; //@inject_tag: bson:"gid" // 玩家id
+  string channel          = 2; //@inject_tag: bson:"channel" // 渠道类型
+  string platform         = 3; //@inject_tag: bson:"platform" // 平台类型: pc/ios/android
+  string device_model     = 4; //@inject_tag: bson:"deviceModel" // 设备型号
+  string device_id        = 5; //@inject_tag: bson:"deviceId" // 设备串号
+  string operating_system = 6; //@inject_tag: bson:"operatingSystem" // 系统
+  int32  cpu_num          = 7; //@inject_tag: bson:"cpuNum" // CPU核心数
+  int32  mem_size         = 8; //@inject_tag: bson:"memSize" // 内存大小（MB）
+  string version          = 9; //@inject_tag: bson:"version" // 配置版本号
+  string client_version   = 10; //@inject_tag: bson:"clientVersion" // 客户端程序版本
+  bool   check_version    = 11; //@inject_tag: bson:"checkVersion" // 是否检查版本
+  string machine_code     = 12; //@inject_tag: bson:"machineCode" // 机器唯一码
+}
+
+message PlayerBase {
+  int64  gid      = 1; //@inject_tag: bson:"gid"        // 玩家全局ID
+  string niceName = 2; //@inject_tag: bson:"niceName"   // 昵称
+  int32  icon     = 3; //@inject_tag: bson:"icon"       // 头像
+  int32  level    = 4; //@inject_tag: bson:"level"      // 等级
+  int32  gender   = 5; //@inject_tag: bson:"gender"     // 性别
+  int32  exp      = 6; //@inject_tag: bson:"exp"       //经验
+}

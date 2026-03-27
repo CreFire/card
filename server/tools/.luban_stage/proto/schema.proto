@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package cfg;
+
+enum CfgGameMode {
+    CfgGameMode_EMPTY_PLACEHOLDER = 0;
+    CfgGameMode_Classic = 1;
+    CfgGameMode_Ranked = 2;
+}
+enum CfgRoomState {
+    CfgRoomState_EMPTY_PLACEHOLDER = 0;
+    CfgRoomState_Idle = 1;
+    CfgRoomState_Matching = 2;
+    CfgRoomState_Playing = 3;
+    CfgRoomState_Finished = 4;
+}
+
+message global {
+     string server_name = 1 ;
+     int32 max_room_player = 2 ;
+     int32 match_timeout_sec = 3 ;
+     int32 turn_timeout_sec = 4 ;
+     int32 board_size = 5 ;
+     bool allow_undo = 6 ;
+}
+
+message Tbglobal {
+    repeated global data_list = 1 [packed = false];
+}
+
+

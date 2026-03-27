@@ -1,0 +1,96 @@
+
+syntax = "proto3";
+
+package pb;
+
+option csharp_namespace = "Game.Net.Pb";
+option go_package = "game/src/proto/pb";
+import "common.proto";
+import "error.proto";
+message AuthLoginREQ {
+  string     account     = 1; // 账号标识
+  DeviceInfo device_info = 2; // 设备信息
+  string     token       = 3; // 登录token
+}
+
+// 认证登录消息返回
+message AuthLoginRSP {
+  HttpError err             = 1; // 错误码 0: 成功 1 2 3,
+  string    account         = 2; // 账号
+  string    session         = 3; // 认证服session
+  int32     time_zone       = 4; // 服务器时区
+  uint64    global_flags    = 6; // 游戏全局flags
+  int32     created_days    = 7; // 创建天数
+  bool      show_water_mark = 9; // 是否显示水印
+  string    ip              = 10; // ip
+}
+
+// 使用角色进入区服
+message AuthUseRoleREQ {
+  string     session     = 1; // 认证服session
+  int32      sid         = 2; // 服务器ID
+  DeviceInfo device_info = 3; // 设备信息
+  string     name        = 4; // 玩家名称
+}
+
+message AuthUseRoleRSP {
+  HttpError  err          = 1; // 错误码
+  int64      gid          = 2; // 角色id
+  ServerAddr addr         = 3; // 服务器地址
+  int64      forbidStart  = 4; // 开始禁号时间
+  int64      forbidEnd    = 5; // 结束禁号时间
+  string     forbidReason = 6; // 禁止登录说明
+  int32      timeZone     = 7; // 服务器时区
+}
+
+// 服务器地址
+message ServerAddr {
+  string ip = 1;
+  int32 port = 2;
+}
+
+
+// 玩家登陆
+message LoginBySessionREQ {
+  int64 gid = 1; // 玩家id
+  string session = 2; // 重连session
+  bool reconnect = 3; // 是否重连
+  DeviceInfo device_info = 4; // 设备数据
+}
+
+// 玩家重连/切服
+message LoginReconnectREQ {
+  int64 gid = 1; // 玩家id
+  string session = 2; // 重连session
+  int32 ack = 3; //
+}
+
+
+// 玩家登陆
+message LoginBySessionRSP {
+  ERROR err = 1; // 错误码 LOGIN_IN_QUEUE 已在排队中, LOGIN_EXIT_QUEUE 已退出排队
+  Gamer main = 2; // 玩家主信息
+  int64 forbid_start = 4; // 开始禁号时间
+  int64 forbid_end = 5; // 结束禁号时间
+  string forbid_reason = 6; // 禁止登录说明
+  int32 time_zone = 7; // 服务器时区
+  int64 register_time = 8; // 角色注册时间
+}
+
+message LoginSyncNTF {
+  int32 status = 1; // 是否同步完成
+}
+
+// 玩家登出
+message LoginOutREQ {
+  int64 gid = 1;
+}
+
+message LoginOutRSP {}
+
+// 服务器关闭
+message ServerCloseNTF {
+  int32 code = 1; // 0 正常关闭 1 维护
+  int64 shut_time = 2; // 关闭时间
+  string reason = 3;
+}

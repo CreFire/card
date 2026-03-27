@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package pb;
+
+option csharp_namespace = "Game.Net.Pb";
+option go_package = "game/src/proto/pb";
+
+import "common.proto";
+import "micro.proto";
+
+message Empty {}
+
+message GateGamerSnapshot {
+  string conn_id = 1;
+  string account_id = 2;
+  string player_id = 3;
+  string session_id = 4;
+  string remote_addr = 5;
+  GamerStatus status = 6;
+  Gamer profile = 7;
+  int64 connected_at = 8;
+  int64 last_seen_at = 9;
+}
+
+message GetGateGamerRequest {
+  string conn_id = 1;
+}
+
+message GetGateGamerResponse {
+  GateGamerSnapshot gamer = 1;
+}
+
+message ListGateGamersRequest {}
+
+message ListGateGamersResponse {
+  repeated GateGamerSnapshot gamers = 1;
+}
+
+message KickGateGamerRequest {
+  string conn_id = 1;
+  string reason = 2;
+}
+
+message KickGateGamerResponse {
+  bool ok = 1;
+}
